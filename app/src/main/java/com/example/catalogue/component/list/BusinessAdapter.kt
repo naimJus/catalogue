@@ -3,12 +3,12 @@ package com.example.catalogue.component.list
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.catalogue.data.beans.Businesses
+import com.example.catalogue.data.beans.Business
 import com.example.catalogue.databinding.ItemBusinessBinding
 
 class BusinessAdapter(
     private val listViewModel: ListViewModel,
-    var list: List<Businesses>?
+    var list: List<Business>?
 ) :
     RecyclerView.Adapter<CustomViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder =
@@ -33,10 +33,10 @@ class CustomViewHolder(
     private val listViewModel: ListViewModel
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(businesses: Businesses) {
-        binding.business = businesses
+    fun bind(business: Business) {
+        binding.business = business
         binding.root.setOnClickListener {
-            listViewModel.itemSelected(binding.ivBusiness to businesses.id)
+            listViewModel.itemSelected(binding.ivBusiness to business)
         }
     }
 }

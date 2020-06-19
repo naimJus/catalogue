@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.example.catalogue.component.list.BusinessAdapter
 import com.example.catalogue.component.list.ListViewModel
-import com.example.catalogue.data.beans.Businesses
+import com.example.catalogue.data.beans.Business
 import io.reactivex.Single
 import io.reactivex.SingleTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,7 +25,7 @@ fun <T> applySingleSchedulers(): SingleTransformer<T, T>? {
 @BindingAdapter(value = ["items", "businessViewModel"], requireAll = true)
 fun items(
     recyclerView: RecyclerView,
-    list: List<Businesses>?,
+    list: List<Business>?,
     searchViewModel: ListViewModel
 ) {
     if (recyclerView.adapter == null) {

@@ -7,7 +7,7 @@
 
         <variable
             name="business"
-            type="com.example.catalogue.data.beans.Businesses" />
+            type="com.example.catalogue.data.beans.Business" />
 
         <variable
             name="viewModel"
