@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="imageItem"
+            type="java.lang.String" />
+
+        <variable
+            name="viewModel"
+            type="com.example.catalogue.component.detail.DetailsViewModel" />
+    </data>
+
+    <ImageView
+        android:id="@+id/ivGalleryItem"
+        android:layout_width="@dimen/business_thumb_size"
+        android:layout_height="@dimen/business_thumb_size"
+        android:clickable="true"
+        android:contentDescription="@string/empty"
+        android:focusable="true"
+        android:onClick="@{()->viewModel.galleryItemClick(imageItem)}"
+        app:drawableUrl="@{imageItem}" />
+</layout>

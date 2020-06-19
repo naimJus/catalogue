@@ -4,10 +4,13 @@ import android.annotation.SuppressLint
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import com.example.catalogue.component.detail.DetailsViewModel
+import com.example.catalogue.component.detail.GalleryAdapter
 import com.example.catalogue.component.list.BusinessAdapter
 import com.example.catalogue.component.list.ListViewModel
 import com.example.catalogue.data.beans.Business
@@ -25,20 +28,36 @@ fun <T> applySingleSchedulers(): SingleTransformer<T, T>? {
     }
 }
 
-@BindingAdapter(value = ["items", "businessViewModel"], requireAll = true)
+@BindingAdapter(value = ["businessItems", "businessViewModel"], requireAll = true)
 fun items(
     recyclerView: RecyclerView,
     list: List<Business>?,
-    searchViewModel: ListViewModel
+    listViewModel: ListViewModel
 ) {
     if (recyclerView.adapter == null) {
-        recyclerView.adapter = BusinessAdapter(searchViewModel, list)
+        recyclerView.adapter = BusinessAdapter(listViewModel, list)
     } else {
         (recyclerView.adapter as BusinessAdapter).list = list
     }
     (recyclerView.adapter as BusinessAdapter).notifyDataSetChanged()
 
     recyclerView.isVisible = !list.isNullOrEmpty()
+}
+
+@BindingAdapter(value = ["galleryItems", "detailsViewModel"], requireAll = true)
+fun galleryItems(
+    recyclerView: RecyclerView,
+    list: List<String>?,
+    detailsViewModel: DetailsViewModel
+) {
+    if (recyclerView.adapter == null) {
+        recyclerView.adapter = GalleryAdapter(detailsViewModel, list)
+    } else {
+        (recyclerView.adapter as GalleryAdapter).galleryItems = list
+    }
+    (recyclerView.adapter as GalleryAdapter).notifyDataSetChanged()
+
+    recyclerView.isInvisible = list.isNullOrEmpty()
 }
 
 @BindingAdapter(value = ["drawableUrl"])

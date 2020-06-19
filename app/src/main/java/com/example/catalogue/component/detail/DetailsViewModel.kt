@@ -32,4 +32,9 @@ class DetailsViewModel @Inject constructor(private val repository: BusinessRepos
             { showErrorDialog() }
         ))
     }
+
+    fun galleryItemClick(itemUrl: String) {
+        _businessRequiredLiveData.value =
+            BusinessRequiredData(businessDetailsLiveData.value!!.id, itemUrl)
+    }
 }
