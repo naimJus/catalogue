@@ -1,6 +1,7 @@
 package com.example.catalogue.data
 
 import com.example.catalogue.data.beans.BusinessResponse
+import com.example.catalogue.data.beans.DetailsResponse
 import com.example.catalogue.util.*
 import io.reactivex.Single
 import retrofit2.Response
@@ -12,7 +13,7 @@ import retrofit2.http.Query
 interface ApiInterface {
 
     @GET(BUSINESS_DETAILS)
-    fun businessDetails(@Path("id") id: String)
+    fun businessDetails(@Path("id") id: String): Single<Response<DetailsResponse>>
 
     @GET(REVIEWS)
     fun businessReviews(@Path("id") id: String)

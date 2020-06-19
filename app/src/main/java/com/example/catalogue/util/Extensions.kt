@@ -1,5 +1,6 @@
 package com.example.catalogue.util
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
@@ -39,11 +40,12 @@ fun items(
 }
 
 @BindingAdapter(value = ["drawableUrl"])
-fun setDrawableUrl(view: ImageView, url: String) {
-    view.load(url)
+fun setDrawableUrl(view: ImageView, url: String?) {
+    url?.let { view.load(it) }
 }
 
 @BindingAdapter(value = ["rating"])
 fun rating(view: TextView, rating: Double) {
+    view.visibility = if (rating > 0) View.VISIBLE else View.INVISIBLE
     view.text = rating.toString()
 }

@@ -16,4 +16,5 @@
     <dimen name="business_thumb_size">120dp</dimen>
 
     <dimen name="icon_size">16dp</dimen>
+    <dimen name="poster_image">250dp</dimen>
 </resources>

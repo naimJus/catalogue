@@ -1,13 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".component.list.ListFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.catalogue.component.detail.DetailsViewModel" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivBusinessPoster"
+                android:layout_width="@dimen/poster_image"
+                android:layout_height="@dimen/poster_image"
+                android:layout_margin="@dimen/spacing_larger"
+                android:contentDescription="@string/empty"
+                android:transitionName="@{viewModel.businessRequiredLiveData.id}"
+                app:drawableUrl="@{viewModel.businessRequiredLiveData.imageUrl}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/gallery_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/business_thumb_size"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivBusinessPoster" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_normal"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gallery_recycler_view"
+                app:layout_constraintVertical_bias="0">
+
+                <TextView
+                    android:id="@+id/tvBusinessName"
+                    style="@style/AdapterItemText.Title"
+                    android:text="@{viewModel.businessDetailsLiveData.name}" />
+
+                <TextView
+                    android:id="@+id/tvBusinessLocation"
+                    style="@style/AdapterItemText.Title" />
+
+                <TextView
+                    android:id="@+id/tvBusinessPhone"
+                    style="@style/AdapterItemText.Subtitle"
+                    android:text="@{viewModel.businessDetailsLiveData.displayPhone}" />
+
+                <TextView
+                    android:id="@+id/tvBusinessPrice"
+                    style="@style/AdapterItemText.Subtitle"
+                    android:text="@{viewModel.businessDetailsLiveData.price}" />
+
+                <TextView
+                    android:id="@+id/tvBusinessRating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:textColor="@color/eighty_alpha_black"
+                    android:textSize="@dimen/text_normal"
+                    app:rating="@{viewModel.businessDetailsLiveData.rating}" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
