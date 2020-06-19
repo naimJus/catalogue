@@ -41,6 +41,18 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/ivBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:alpha="0.5"
+                    android:contentDescription="@string/empty"
+                    android:scaleType="fitXY"
+                    app:backgroundImageUrl="@{viewModel.businessRequiredLiveData.imageUrl}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
                     android:id="@+id/ivBusinessPoster"
                     android:layout_width="@dimen/poster_image"
                     android:layout_height="@dimen/poster_image"
@@ -48,9 +60,10 @@
                     android:contentDescription="@string/empty"
                     android:transitionName="@{viewModel.businessRequiredLiveData.id}"
                     app:drawableUrl="@{viewModel.businessRequiredLiveData.imageUrl}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintBottom_toTopOf="@+id/rvGallery"
+                    app:layout_constraintEnd_toEndOf="@id/ivBackground"
+                    app:layout_constraintStart_toStartOf="@id/ivBackground"
+                    app:layout_constraintTop_toTopOf="@id/ivBackground" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvGallery"
@@ -61,8 +74,8 @@
                     app:detailsViewModel="@{viewModel}"
                     app:galleryItems="@{viewModel.businessDetailsLiveData.photos}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivBackground"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ivBusinessPoster"
                     tools:listitem="@layout/gallery_item" />
 
                 <LinearLayout
