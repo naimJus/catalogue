@@ -36,7 +36,7 @@ class CustomViewHolder(
     fun bind(businesses: Businesses) {
         binding.business = businesses
         binding.root.setOnClickListener {
-            listViewModel.itemSelected(businesses.id)
+            listViewModel.itemSelected(binding.ivBusiness to businesses.id)
         }
     }
 }
