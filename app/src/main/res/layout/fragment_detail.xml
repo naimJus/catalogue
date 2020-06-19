@@ -25,6 +25,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
+                app:navigationIcon="@drawable/ic_back_arrow"
                 app:title="@{viewModel.businessDetailsLiveData.name}"
                 app:titleTextColor="@android:color/white" />
 
@@ -115,8 +116,8 @@
                         android:id="@+id/tvHours"
                         style="@style/DetailItem.Normal"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/spacing_tiny"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_tiny"
                         app:setDays="@{viewModel.businessDetailsLiveData.hours}" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

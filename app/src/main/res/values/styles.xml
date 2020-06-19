@@ -10,6 +10,7 @@
     <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
     </style>
 
 
@@ -48,6 +49,7 @@
         <item name="android:textSize">@dimen/text_large</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="DetailItem.Normal" parent="DetailItem">
         <item name="android:textSize">@dimen/text_large</item>
     </style>

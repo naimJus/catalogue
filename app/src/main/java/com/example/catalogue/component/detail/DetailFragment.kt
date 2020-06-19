@@ -11,6 +11,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import androidx.transition.TransitionInflater
 import com.example.catalogue.R
 import com.example.catalogue.data.EventObserver
@@ -43,6 +45,10 @@ class DetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
             viewModel = this@DetailFragment.viewModel
             toolbar.inflateMenu(R.menu.menu_details)
             toolbar.setOnMenuItemClickListener(this@DetailFragment)
+            toolbar.setupWithNavController(
+                findNavController(),
+                AppBarConfiguration(setOf(R.id.navigation_list_fragment))
+            )
         }.root
 
         postponeEnterTransition(200L, TimeUnit.MILLISECONDS)
