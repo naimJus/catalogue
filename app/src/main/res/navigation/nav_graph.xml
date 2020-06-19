@@ -23,9 +23,8 @@
         android:name="com.example.catalogue.component.detail.DetailFragment"
         tools:layout="@layout/fragment_detail">
         <argument
-            android:name="arg_business_id"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="arg_business"
+            app:argType="com.example.catalogue.data.beans.BusinessRequiredData" />
         <action
             android:id="@+id/to_info_dialog"
             app:destination="@id/navigation_info_dialog" />

@@ -7,6 +7,7 @@
     <dimen name="text_larger">20sp</dimen>
 
     <!-- spacing between two views -->
+    <dimen name="spacing_largest">34dp</dimen>
     <dimen name="spacing_larger">32dp</dimen>
     <dimen name="spacing_large">24dp</dimen>
     <dimen name="spacing_normal">16dp</dimen>
@@ -16,4 +17,5 @@
     <dimen name="business_thumb_size">120dp</dimen>
 
     <dimen name="icon_size">16dp</dimen>
+    <dimen name="poster_image">250dp</dimen>
 </resources>

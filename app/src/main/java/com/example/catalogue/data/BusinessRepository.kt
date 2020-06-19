@@ -1,6 +1,7 @@
 package com.example.catalogue.data
 
 import com.example.catalogue.data.beans.BusinessResponse
+import com.example.catalogue.data.beans.DetailsResponse
 import com.example.catalogue.util.applySingleSchedulers
 import io.reactivex.Single
 import retrofit2.Response
@@ -15,6 +16,11 @@ class BusinessRepository @Inject constructor(private val apiInterface: ApiInterf
         term: String? = null
     ): Single<Response<BusinessResponse>> =
         apiInterface.businessSearch(latitude, longitude, term)
+            .compose(applySingleSchedulers())
+            .flatMap { Single.just(it) }
+
+    fun callDetails(id: String): Single<Response<DetailsResponse>> =
+        apiInterface.businessDetails(id)
             .compose(applySingleSchedulers())
             .flatMap { Single.just(it) }
 }

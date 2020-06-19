@@ -1,31 +1,26 @@
 package com.example.catalogue.component.list
 
 import android.view.View
+import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.catalogue.R
 import com.example.catalogue.component.BaseViewModel
-import com.example.catalogue.component.info.DialogView
 import com.example.catalogue.data.BusinessRepository
 import com.example.catalogue.data.Event
-import com.example.catalogue.data.beans.Businesses
+import com.example.catalogue.data.beans.Business
+import com.example.catalogue.data.beans.BusinessRequiredData
 import javax.inject.Inject
 
 class ListViewModel @Inject constructor(private val repository: BusinessRepository) :
     BaseViewModel() {
 
-    private val _businessListData = MutableLiveData<List<Businesses>>()
-    val businessListData: LiveData<List<Businesses>>
+    private val _businessListData = MutableLiveData<List<Business>>()
+    val businessListData: LiveData<List<Business>>
         get() = _businessListData
 
-    private val _navigateToDetailData = MutableLiveData<Event<Pair<View, String>>>()
-    val navigateToDetailData: LiveData<Event<Pair<View, String>>>
+    private val _navigateToDetailData = MutableLiveData<Event<Pair<View, BusinessRequiredData>>>()
+    val navigateToDetailData: LiveData<Event<Pair<View, BusinessRequiredData>>>
         get() = _navigateToDetailData
-
-    private val _errorData = MutableLiveData<Event<DialogView>>()
-    val errorData: LiveData<Event<DialogView>>
-        get() = _errorData
-
 
     fun subscribe() {
         disposable.add(repository.callSearch().subscribe(
@@ -43,17 +38,8 @@ class ListViewModel @Inject constructor(private val repository: BusinessReposito
         ))
     }
 
-    fun itemSelected(pair: Pair<View, String>) {
-        _navigateToDetailData.value = Event(pair)
+    fun itemSelected(view: ImageView, business: Business) {
+        _navigateToDetailData.value =
+            Event(view to BusinessRequiredData(business.id, business.imageUrl))
     }
-
-    private fun showErrorDialog(
-        title: Int = R.string.common_error_title,
-        message: Int = R.string.common_error_msg,
-        buttonRes: Int = R.string.word_ok
-    ) {
-        _errorData.value =
-            Event(DialogView(title = title, message = message, buttonRes = buttonRes))
-    }
-
 }

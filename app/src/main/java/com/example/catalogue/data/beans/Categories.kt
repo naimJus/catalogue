@@ -2,7 +2,9 @@ package com.example.catalogue.data.beans
 
 import com.google.gson.annotations.SerializedName
 
-data class Categories (
-	@SerializedName("alias") val alias : String,
-	@SerializedName("title") val title : String
-)
+data class Categories(
+    @SerializedName("alias") val alias: String?,
+    @SerializedName("title") val title: String?
+) {
+    override fun toString(): String = title ?: ""
+}
