@@ -35,7 +35,9 @@ class ListFragment : DaggerFragment() {
         viewModel.subscribe()
 
         viewModel.navigateToDetailData.observe(viewLifecycleOwner, EventObserver {
-            val fragmentNavigatorExtras = FragmentNavigatorExtras(it)
+            //create shared element transition extra
+            val fragmentNavigatorExtras = FragmentNavigatorExtras(it.first to it.second.id)
+            // navigate to details fragment
             findNavController().navigate(toDetailFragment(it.second), fragmentNavigatorExtras)
         })
 
