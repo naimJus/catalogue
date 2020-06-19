@@ -23,10 +23,15 @@ class ListViewModel @Inject constructor(private val repository: BusinessReposito
         get() = _navigateToDetailData
 
     fun subscribe() {
+        when (businessListData.value) {
+            null -> fetchData()
+        }
+    }
+
+    private fun fetchData() {
         disposable.add(repository.callSearch().subscribe(
             { response ->
                 if (response.isSuccessful && !response.body()?.businesses.isNullOrEmpty()) {
-                    showErrorDialog()
                     _businessListData.value = response.body()?.businesses
                 } else {
                     showErrorDialog()
