@@ -6,3 +6,5 @@ const val BUSINESS_SEARCH = "businesses/search"
 const val BUSINESS_DETAILS = "businesses/{id}/reviews"
 const val AUTOCOMPLETE = "autocomplete"
 const val REVIEWS = "businesses/{id}/reviews"
+
+const val TOKEN = "tGji3Brs0Q7lrDhhE5a_NbCVHMfv2BqQWs2zVmqWPXrCnpdQo6p28JI5K_xljMMCLoQByMsoIk20JdNUhA7lo9HKzFHyjnTMf6pwR5Kp1qpBEUDK76BTxcwvMYrrXnYx"
