@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.example.catalogue.component.list.ListFragmentDirections.toDetailFragment
+import com.example.catalogue.component.list.ListFragmentDirections.toInfoDialog
 import com.example.catalogue.data.EventObserver
 import com.example.catalogue.databinding.FragmentListBinding
 import com.example.catalogue.util.ViewModelFactory
@@ -19,7 +20,7 @@ class ListFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: ListViewModel by viewModels { viewModelFactory }
-    
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,6 +37,15 @@ class ListFragment : DaggerFragment() {
         viewModel.navigateToDetailData.observe(viewLifecycleOwner, EventObserver {
             val fragmentNavigatorExtras = FragmentNavigatorExtras(it)
             findNavController().navigate(toDetailFragment(it.second), fragmentNavigatorExtras)
+        })
+
+        viewModel.errorData.observe(viewLifecycleOwner, EventObserver {
+
+            findNavController().navigate(toInfoDialog().apply {
+                argButtonConfirmation = it.title
+                argMessage = it.message
+                argButtonConfirmation = it.buttonRes
+            })
         })
     }
 }
