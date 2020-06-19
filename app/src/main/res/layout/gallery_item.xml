@@ -13,13 +13,20 @@
             type="com.example.catalogue.component.detail.DetailsViewModel" />
     </data>
 
-    <ImageView
-        android:id="@+id/ivGalleryItem"
-        android:layout_width="@dimen/business_thumb_size"
-        android:layout_height="@dimen/business_thumb_size"
-        android:clickable="true"
-        android:contentDescription="@string/empty"
-        android:focusable="true"
-        android:onClick="@{()->viewModel.galleryItemClick(imageItem)}"
-        app:drawableUrl="@{imageItem}" />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_small">
+
+        <ImageView
+            android:id="@+id/ivGalleryItem"
+            android:layout_width="@dimen/business_thumb_size"
+            android:layout_height="@dimen/business_thumb_size"
+            android:clickable="true"
+            android:contentDescription="@string/empty"
+            android:focusable="true"
+            android:onClick="@{()->viewModel.galleryItemClick(imageItem)}"
+            android:scaleType="centerCrop"
+            app:drawableUrl="@{imageItem}" />
+    </FrameLayout>
 </layout>

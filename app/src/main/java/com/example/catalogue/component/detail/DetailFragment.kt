@@ -1,5 +1,6 @@
 package com.example.catalogue.component.detail
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,12 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
 import com.example.catalogue.R
 import com.example.catalogue.data.EventObserver
 import com.example.catalogue.databinding.FragmentDetailBinding
 import com.example.catalogue.util.ViewModelFactory
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_detail.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
