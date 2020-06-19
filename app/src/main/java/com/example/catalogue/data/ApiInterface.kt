@@ -30,5 +30,5 @@ interface ApiInterface {
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
         @Query("term") term: String?
-    ): Single<Response<List<BusinessResponse>>>
+    ): Single<Response<BusinessResponse>>
 }

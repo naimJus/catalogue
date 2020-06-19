@@ -13,7 +13,7 @@ class BusinessRepository @Inject constructor(private val apiInterface: ApiInterf
         latitude: Double = 37.786882,
         longitude: Double = -122.399972,
         term: String? = null
-    ): Single<Response<List<BusinessResponse>>> =
+    ): Single<Response<BusinessResponse>> =
         apiInterface.businessSearch(latitude, longitude, term)
             .compose(applySingleSchedulers())
             .flatMap { Single.just(it) }
