@@ -57,7 +57,8 @@
 
                 <TextView
                     android:id="@+id/tvBusinessLocation"
-                    style="@style/AdapterItemText.Title" />
+                    style="@style/AdapterItemText.Title"
+                    app:address="@{viewModel.businessDetailsLiveData.location}" />
 
                 <TextView
                     android:id="@+id/tvBusinessPhone"
@@ -71,11 +72,7 @@
 
                 <TextView
                     android:id="@+id/tvBusinessRating"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:textColor="@color/eighty_alpha_black"
-                    android:textSize="@dimen/text_normal"
+                    style="@style/AdapterItemText.Subtitle"
                     app:rating="@{viewModel.businessDetailsLiveData.rating}" />
 
             </LinearLayout>

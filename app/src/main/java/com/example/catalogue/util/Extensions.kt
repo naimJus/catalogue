@@ -1,5 +1,6 @@
 package com.example.catalogue.util
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,6 +11,7 @@ import coil.api.load
 import com.example.catalogue.component.list.BusinessAdapter
 import com.example.catalogue.component.list.ListViewModel
 import com.example.catalogue.data.beans.Business
+import com.example.catalogue.data.beans.Location
 import io.reactivex.Single
 import io.reactivex.SingleTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -48,4 +50,10 @@ fun setDrawableUrl(view: ImageView, url: String?) {
 fun rating(view: TextView, rating: Double) {
     view.visibility = if (rating > 0) View.VISIBLE else View.INVISIBLE
     view.text = rating.toString()
+}
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter(value = ["address"])
+fun address(view: TextView, location: Location?) {
+    view.text = "${location?.city} | ${location?.country}"
 }
