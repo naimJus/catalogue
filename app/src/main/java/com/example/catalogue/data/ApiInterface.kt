@@ -13,6 +13,7 @@ import retrofit2.http.Query
 interface ApiInterface {
 
     @GET(BUSINESS_DETAILS)
+    @Headers("Authorization: Bearer $TOKEN")
     fun businessDetails(@Path("id") id: String): Single<Response<DetailsResponse>>
 
     @GET(REVIEWS)
