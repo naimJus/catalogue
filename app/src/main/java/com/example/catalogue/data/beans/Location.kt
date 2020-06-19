@@ -1,7 +1,5 @@
 package com.example.catalogue.data.beans
 
-import android.os.Parcel
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
@@ -13,5 +11,6 @@ data class Location(
     @SerializedName("zip_code") val zip_code: Int,
     @SerializedName("country") val country: String?,
     @SerializedName("state") val state: String?,
-    @SerializedName("display_address") val displayAddress: ArrayList<String>?
+    @SerializedName("display_address") val displayAddress: ArrayList<String>?,
+    @SerializedName("cross_streets") val crossStreets: String?
 )

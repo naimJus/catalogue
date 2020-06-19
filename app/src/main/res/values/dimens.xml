@@ -7,6 +7,7 @@
     <dimen name="text_larger">20sp</dimen>
 
     <!-- spacing between two views -->
+    <dimen name="spacing_largest">34dp</dimen>
     <dimen name="spacing_larger">32dp</dimen>
     <dimen name="spacing_large">24dp</dimen>
     <dimen name="spacing_normal">16dp</dimen>

@@ -28,7 +28,7 @@ class DetailsViewModel @Inject constructor(private val repository: BusinessRepos
     val businessWebLiveData: LiveData<Event<String>>
         get() = _businessWebLiveData
 
-    lateinit var businessDetails: DetailsResponse
+    private lateinit var businessDetails: DetailsResponse
 
     fun subscribe(business: BusinessRequiredData) {
         _businessRequiredLiveData.value = business

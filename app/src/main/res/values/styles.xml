@@ -32,4 +32,20 @@
         <item name="android:textColor">@color/eighty_alpha_black</item>
     </style>
 
+
+    <style name="DetailItem">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="DetailItem.HeadingOne" parent="DetailItem">
+        <item name="android:textSize">@dimen/text_larger</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DetailItem.HeadingTwo" parent="DetailItem">
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

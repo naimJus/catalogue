@@ -9,11 +9,13 @@ import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import com.example.catalogue.R
 import com.example.catalogue.component.detail.DetailsViewModel
 import com.example.catalogue.component.detail.GalleryAdapter
 import com.example.catalogue.component.list.BusinessAdapter
 import com.example.catalogue.component.list.ListViewModel
 import com.example.catalogue.data.beans.Business
+import com.example.catalogue.data.beans.Categories
 import com.example.catalogue.data.beans.Location
 import io.reactivex.Single
 import io.reactivex.SingleTransformer
@@ -74,5 +76,22 @@ fun rating(view: TextView, rating: Double) {
 @SuppressLint("SetTextI18n")
 @BindingAdapter(value = ["address"])
 fun address(view: TextView, location: Location?) {
-    view.text = "${location?.city} | ${location?.country}"
+    if (location == null) {
+        view.visibility = View.INVISIBLE
+    } else {
+        val string = view.context.getString(
+            R.string.address,
+            location.displayAddress?.get(0),
+            location.displayAddress?.get(1),
+            location.crossStreets
+        )
+        view.text = string
+        view.visibility = View.VISIBLE
+    }
+}
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter(value = ["setPrice", "setCategories"], requireAll = true)
+fun setPrice(view: TextView, price: String?, categories: List<Categories>?) {
+    view.text = "$price ${categories?.joinToString(separator = ", ")}"
 }

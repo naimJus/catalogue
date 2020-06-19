@@ -14,7 +14,7 @@ data class DetailsResponse(
     @SerializedName("display_phone") val displayPhone: String,
     @SerializedName("review_count") val reviewCount: Int,
     @SerializedName("categories") val categories: List<Categories>,
-    @SerializedName("rating") val rating: Double,
+    @SerializedName("rating") val rating: Float,
     @SerializedName("location") val location: Location,
     @SerializedName("coordinates") val coordinates: Coordinates,
     @SerializedName("photos") val photos: List<String>,
