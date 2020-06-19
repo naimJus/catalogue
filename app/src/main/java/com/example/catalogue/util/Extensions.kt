@@ -16,6 +16,7 @@ import com.example.catalogue.component.list.BusinessAdapter
 import com.example.catalogue.component.list.ListViewModel
 import com.example.catalogue.data.beans.Business
 import com.example.catalogue.data.beans.Categories
+import com.example.catalogue.data.beans.Hours
 import com.example.catalogue.data.beans.Location
 import io.reactivex.Single
 import io.reactivex.SingleTransformer
@@ -94,4 +95,16 @@ fun address(view: TextView, location: Location?) {
 @BindingAdapter(value = ["setPrice", "setCategories"], requireAll = true)
 fun setPrice(view: TextView, price: String?, categories: List<Categories>?) {
     view.text = "$price ${categories?.joinToString(separator = ", ")}"
+}
+
+@SuppressLint("SetTextI18n")
+@BindingAdapter(value = ["setDays"])
+fun setDays(view: TextView, hours: List<Hours>?) {
+    val schedule = StringBuilder()
+    val daysArray = view.context.resources.getStringArray(R.array.days)
+    val hoursArray = hours?.get(0)?.open
+    hoursArray?.forEach { open ->
+        schedule.append(String.format(daysArray[open.day], open.start, open.end))
+    }
+    view.text = schedule.toString()
 }

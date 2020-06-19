@@ -110,6 +110,14 @@
                         style="@style/DetailItem.HeadingTwo"
                         app:setCategories="@{viewModel.businessDetailsLiveData.categories}"
                         app:setPrice="@{viewModel.businessDetailsLiveData.price}" />
+
+                    <TextView
+                        android:id="@+id/tvHours"
+                        style="@style/DetailItem.Normal"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/spacing_tiny"
+                        android:layout_height="wrap_content"
+                        app:setDays="@{viewModel.businessDetailsLiveData.hours}" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

@@ -48,4 +48,7 @@
         <item name="android:textSize">@dimen/text_large</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <style name="DetailItem.Normal" parent="DetailItem">
+        <item name="android:textSize">@dimen/text_large</item>
+    </style>
 </resources>
