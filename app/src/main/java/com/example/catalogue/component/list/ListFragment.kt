@@ -1,5 +1,6 @@
 package com.example.catalogue.component.list
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.catalogue.data.EventObserver
 import com.example.catalogue.databinding.FragmentListBinding
 import com.example.catalogue.util.ViewModelFactory
 import dagger.android.support.DaggerFragment
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ListFragment : DaggerFragment() {
@@ -21,18 +23,27 @@ class ListFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: ListViewModel by viewModels { viewModelFactory }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModel.subscribe()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = FragmentListBinding.inflate(inflater, container, false).apply {
-        viewModel = this@ListFragment.viewModel
-        lifecycleOwner = viewLifecycleOwner
-    }.root
+    ): View? {
+        val view = FragmentListBinding.inflate(inflater, container, false).apply {
+            viewModel = this@ListFragment.viewModel
+            lifecycleOwner = viewLifecycleOwner
+        }.root
+
+        postponeEnterTransition(200L, TimeUnit.MILLISECONDS)
+        return view
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.subscribe()
 
         viewModel.navigateToDetailData.observe(viewLifecycleOwner, EventObserver {
             //create shared element transition extra

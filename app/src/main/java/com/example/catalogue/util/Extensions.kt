@@ -41,9 +41,8 @@ fun items(
         recyclerView.adapter = BusinessAdapter(listViewModel, list)
     } else {
         (recyclerView.adapter as BusinessAdapter).list = list
+        (recyclerView.adapter as BusinessAdapter).notifyDataSetChanged()
     }
-    (recyclerView.adapter as BusinessAdapter).notifyDataSetChanged()
-
     recyclerView.isVisible = !list.isNullOrEmpty()
 }
 
