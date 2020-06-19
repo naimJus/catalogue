@@ -6,8 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.catalogue.R
+import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_detail.*
 
-class DetailFragment : Fragment() {
+class DetailFragment : DaggerFragment() {
+
+    private val navArgs: DetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
