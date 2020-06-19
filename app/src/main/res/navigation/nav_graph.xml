@@ -13,11 +13,40 @@
         <action
             android:id="@+id/to_detail_fragment"
             app:destination="@id/navigation_detail_fragment" />
+        <action
+            android:id="@+id/to_info_dialog"
+            app:destination="@id/navigation_info_dialog" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_detail_fragment"
         android:name="com.example.catalogue.component.detail.DetailFragment"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="arg_business_id"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/to_info_dialog"
+            app:destination="@id/navigation_info_dialog" />
+    </fragment>
 
+    <dialog
+        android:id="@+id/navigation_info_dialog"
+        android:name="com.example.catalogue.component.info.InfoDialogFragment">
+        <argument
+            android:name="arg_title"
+            android:defaultValue="-1"
+            app:argType="integer" />
+
+        <argument
+            android:name="arg_message"
+            android:defaultValue="-1"
+            app:argType="integer" />
+
+        <argument
+            android:name="arg_button_confirmation"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </dialog>
 </navigation>

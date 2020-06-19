@@ -5,6 +5,7 @@ import com.example.catalogue.data.ApiInterface
 import com.example.catalogue.util.BASE_URL
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -42,6 +43,7 @@ class AppModule(private val application: Application) {
     fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create(gson))
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .client(okHttpClient)
         .build()
 
