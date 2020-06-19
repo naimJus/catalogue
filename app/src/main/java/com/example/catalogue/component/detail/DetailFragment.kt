@@ -1,26 +1,26 @@
 package com.example.catalogue.component.detail
 
-import android.graphics.Rect
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
 import com.example.catalogue.R
 import com.example.catalogue.data.EventObserver
 import com.example.catalogue.databinding.FragmentDetailBinding
 import com.example.catalogue.util.ViewModelFactory
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_detail.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class DetailFragment : DaggerFragment() {
+class DetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -41,7 +41,10 @@ class DetailFragment : DaggerFragment() {
         val view = FragmentDetailBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = this@DetailFragment.viewLifecycleOwner
             viewModel = this@DetailFragment.viewModel
+            toolbar.inflateMenu(R.menu.menu_details)
+            toolbar.setOnMenuItemClickListener(this@DetailFragment)
         }.root
+
         postponeEnterTransition(200L, TimeUnit.MILLISECONDS)
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(R.transition.view_shared_enter)
@@ -53,5 +56,28 @@ class DetailFragment : DaggerFragment() {
         viewModel.errorData.observe(viewLifecycleOwner, EventObserver {
             findNavController().navigate(DetailFragmentDirections.toInfoDialog())
         })
+
+        viewModel.businessPhoneCallLiveData.observe(viewLifecycleOwner, EventObserver {
+            startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:${it}")))
+        })
+
+        viewModel.businessWebLiveData.observe(viewLifecycleOwner, EventObserver {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it)))
+        })
     }
+
+    override fun onMenuItemClick(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.item_call -> {
+                viewModel.callBusinessPhone()
+                true
+            }
+            R.id.item_open_in_web -> {
+                viewModel.openInWeb()
+                true
+            }
+            else -> false
+        }
+    }
+
 }
