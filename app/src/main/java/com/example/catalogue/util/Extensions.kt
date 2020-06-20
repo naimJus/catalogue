@@ -22,6 +22,8 @@ import io.reactivex.Single
 import io.reactivex.SingleTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun <T> applySingleSchedulers(): SingleTransformer<T, T>? {
     return SingleTransformer { observable: Single<T> ->
@@ -103,7 +105,24 @@ fun setDays(view: TextView, hours: List<Hours>?) {
     val daysArray = view.context.resources.getStringArray(R.array.days)
     val hoursArray = hours?.get(0)?.open
     hoursArray?.forEach { open ->
-        schedule.append(String.format(daysArray[open.day], open.start, open.end))
+        schedule.append(
+            String.format(
+                daysArray[open.day], open.start.toHourMinute(), open.end.toHourMinute()
+            )
+        )
     }
     view.text = schedule.toString()
+}
+
+/**
+ * Start and end  of the opening hours in a day, in 24-hour clock notation, like 1000 means 10 AM,
+ * 2130 means 9:30 PM.
+ */
+@SuppressLint("SimpleDateFormat")
+fun Int.toHourMinute(): String {
+    val date = Calendar.getInstance().apply {
+        set(Calendar.HOUR_OF_DAY, this@toHourMinute / 100)
+        set(Calendar.MINUTE, this@toHourMinute % 100)
+    }.time
+    return SimpleDateFormat("HH:mm").format(date)
 }
