@@ -20,6 +20,7 @@
     <string name="day_6">Sunday: %s - %s%n</string>
     <string name="search">Search</string>
     <string name="no_data_message">No items available that match your query, please try another one.</string>
+    <string name="open_in_maps">Open in Maps</string>
 
     <string-array name="days">
         <item>@string/day_0</item>

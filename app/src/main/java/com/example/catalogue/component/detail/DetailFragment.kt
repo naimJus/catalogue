@@ -67,11 +67,32 @@ class DetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
         })
 
         viewModel.businessPhoneCallLiveData.observe(viewLifecycleOwner, EventObserver {
-            startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:${it}")))
+            activity?.startActivity(Intent(Intent.ACTION_DIAL, it))
         })
 
         viewModel.businessWebLiveData.observe(viewLifecycleOwner, EventObserver {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it)))
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
+            activity?.packageManager?.let { packageManager ->
+                if (intent.resolveActivity(packageManager) != null) {
+                    activity?.startActivity(intent)
+                }
+            }
+        })
+
+        viewModel.businessMapLiveData.observe(viewLifecycleOwner, EventObserver {
+            val mapIntent = Intent(Intent.ACTION_VIEW, it)
+
+            // Make the Intent explicit
+            mapIntent.setPackage("com.google.android.apps.maps")
+
+            activity?.packageManager?.let { packageManager ->
+                if (mapIntent.resolveActivity(packageManager) != null) {
+                    activity?.startActivity(mapIntent)
+                } else {
+                    mapIntent.setPackage(null)
+                    activity?.startActivity(mapIntent)
+                }
+            }
         })
     }
 
@@ -83,6 +104,10 @@ class DetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
             }
             R.id.item_open_in_web -> {
                 viewModel.openInWeb()
+                true
+            }
+            R.id.item_open_maps -> {
+                viewModel.openInMaps()
                 true
             }
             else -> false

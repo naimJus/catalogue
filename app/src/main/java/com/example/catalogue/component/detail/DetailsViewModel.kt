@@ -1,5 +1,6 @@
 package com.example.catalogue.component.detail
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.catalogue.component.BaseViewModel
@@ -12,6 +13,7 @@ import javax.inject.Inject
 class DetailsViewModel @Inject constructor(private val repository: BusinessRepository) :
     BaseViewModel() {
 
+
     private val _businessDetailsLiveData = MutableLiveData<DetailsResponse>()
     val businessDetailsLiveData: LiveData<DetailsResponse>
         get() = _businessDetailsLiveData
@@ -20,13 +22,17 @@ class DetailsViewModel @Inject constructor(private val repository: BusinessRepos
     val businessRequiredLiveData: LiveData<BusinessRequiredData>
         get() = _businessRequiredLiveData
 
-    private val _businessPhoneCallLiveData = MutableLiveData<Event<String>>()
-    val businessPhoneCallLiveData: LiveData<Event<String>>
+    private val _businessPhoneCallLiveData = MutableLiveData<Event<Uri>>()
+    val businessPhoneCallLiveData: LiveData<Event<Uri>>
         get() = _businessPhoneCallLiveData
 
     private val _businessWebLiveData = MutableLiveData<Event<String>>()
     val businessWebLiveData: LiveData<Event<String>>
         get() = _businessWebLiveData
+
+    private val _businessMapLiveData = MutableLiveData<Event<Uri>>()
+    val businessMapLiveData: LiveData<Event<Uri>>
+        get() = _businessMapLiveData
 
     private lateinit var businessDetails: DetailsResponse
 
@@ -53,10 +59,17 @@ class DetailsViewModel @Inject constructor(private val repository: BusinessRepos
     }
 
     fun callBusinessPhone() {
-        _businessPhoneCallLiveData.value = Event(businessDetails.phone)
+        _businessPhoneCallLiveData.value = Event(Uri.parse("tel:${businessDetails.phone}"))
     }
 
     fun openInWeb() {
         _businessWebLiveData.value = Event(businessDetails.url)
+    }
+
+    fun openInMaps() {
+        val mapsUri =
+            Uri.parse("geo:${businessDetails.coordinates.latitude},${businessDetails.coordinates.longitude}?z=25")
+
+        _businessMapLiveData.value = Event(mapsUri)
     }
 }

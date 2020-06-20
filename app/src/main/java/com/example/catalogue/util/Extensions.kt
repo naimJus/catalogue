@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import coil.transform.BlurTransformation
 import com.example.catalogue.R
 import com.example.catalogue.component.detail.DetailsViewModel
 import com.example.catalogue.component.detail.GalleryAdapter
@@ -65,6 +66,21 @@ fun galleryItems(
 @BindingAdapter(value = ["drawableUrl"])
 fun setDrawableUrl(view: ImageView, url: String?) {
     url?.let { view.load(it) }
+}
+
+@BindingAdapter(value = ["backgroundImageUrl"])
+fun setBackgroundImageUrl(view: ImageView, url: String?) {
+    url?.let {
+        view.load(it) {
+            crossfade(true)
+            transformations(
+                BlurTransformation(
+                    context = view.context.applicationContext,
+                    radius = 20f
+                )
+            )
+        }
+    }
 }
 
 @BindingAdapter(value = ["rating"])
