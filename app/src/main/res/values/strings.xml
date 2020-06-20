@@ -4,19 +4,19 @@
     <string name="open">Open:</string>
     <string name="word_ok">OK</string>
     <string name="common_error_title">Error</string>
-    <string name="common_error_msg">Something when wrong please try again later or contact us.</string>
+    <string name="common_error_msg">Something went wrong internally, please try again later.</string>
     <string name="open_in_web">Open in web</string>
     <string name="call">Call</string>
     <string name="reviews">%d reviews</string>
     <string name="address" translatable="false">%s%n%s%n%s</string>
 
-    <string name="day_0">Monday: %d - %d%n</string>
-    <string name="day_1">Tuesday :%d - %d%n</string>
-    <string name="day_2">Wednesday: %d - %d%n</string>
-    <string name="day_3">Thursday: %d - %d%n</string>
-    <string name="day_4">Friday: %d - %d%n</string>
-    <string name="day_5">Saturday: %d - %d%n</string>
-    <string name="day_6">Sunday: %d - %d%n</string>
+    <string name="day_0">Monday: %s - %s%n</string>
+    <string name="day_1">Tuesday :%s - %s%n</string>
+    <string name="day_2">Wednesday: %s - %s%n</string>
+    <string name="day_3">Thursday: %s - %s%n</string>
+    <string name="day_4">Friday: %s - %s%n</string>
+    <string name="day_5">Saturday: %s - %s%n</string>
+    <string name="day_6">Sunday: %s - %s%n</string>
 
     <string-array name="days">
         <item>@string/day_0</item>

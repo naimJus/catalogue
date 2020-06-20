@@ -20,7 +20,7 @@ data class Business(
     @SerializedName("location") val location: Location,
     @SerializedName("phone") val phone: String,
     @SerializedName("display_phone") val displayPhone: String,
-    @SerializedName("distance") val distance: Double
+    @SerializedName("distance") val distance: Float
 )
 
 data class BusinessRequiredData(val id: String, val imageUrl: String) : Parcelable {

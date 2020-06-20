@@ -60,7 +60,11 @@ class DetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.errorData.observe(viewLifecycleOwner, EventObserver {
-            findNavController().navigate(DetailFragmentDirections.toInfoDialog())
+            findNavController().navigate(DetailFragmentDirections.toInfoDialog().apply {
+                argButtonConfirmation = it.title
+                argMessage = it.message
+                argButtonConfirmation = it.buttonRes
+            })
         })
 
         viewModel.businessPhoneCallLiveData.observe(viewLifecycleOwner, EventObserver {
