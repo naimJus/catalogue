@@ -17,6 +17,7 @@
     <string name="day_4">Friday: %s - %s%n</string>
     <string name="day_5">Saturday: %s - %s%n</string>
     <string name="day_6">Sunday: %s - %s%n</string>
+    <string name="open_in_maps">Open in Maps</string>
 
     <string-array name="days">
         <item>@string/day_0</item>
