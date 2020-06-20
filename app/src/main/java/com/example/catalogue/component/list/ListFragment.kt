@@ -60,7 +60,7 @@ class ListFragment : DaggerFragment(), SearchView.OnQueryTextListener {
             }
         }.root
 
-        postponeEnterTransition(200L, TimeUnit.MILLISECONDS)
+        postponeEnterTransition(50L, TimeUnit.MILLISECONDS)
         return view
     }
 
@@ -105,7 +105,7 @@ class ListFragment : DaggerFragment(), SearchView.OnQueryTextListener {
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         viewModel.query(query)
-        return false
+        return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
