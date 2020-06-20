@@ -10,13 +10,13 @@
     <string name="reviews">%d reviews</string>
     <string name="address" translatable="false">%s%n%s%n%s</string>
 
-    <string name="day_0">Monday: %d - %d%n</string>
-    <string name="day_1">Tuesday :%d - %d%n</string>
-    <string name="day_2">Wednesday: %d - %d%n</string>
-    <string name="day_3">Thursday: %d - %d%n</string>
-    <string name="day_4">Friday: %d - %d%n</string>
-    <string name="day_5">Saturday: %d - %d%n</string>
-    <string name="day_6">Sunday: %d - %d%n</string>
+    <string name="day_0">Monday: %s - %s%n</string>
+    <string name="day_1">Tuesday :%s - %s%n</string>
+    <string name="day_2">Wednesday: %s - %s%n</string>
+    <string name="day_3">Thursday: %s - %s%n</string>
+    <string name="day_4">Friday: %s - %s%n</string>
+    <string name="day_5">Saturday: %s - %s%n</string>
+    <string name="day_6">Sunday: %s - %s%n</string>
 
     <string-array name="days">
         <item>@string/day_0</item>
