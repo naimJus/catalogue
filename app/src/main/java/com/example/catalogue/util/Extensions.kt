@@ -19,19 +19,17 @@ import com.example.catalogue.data.beans.Categories
 import com.example.catalogue.data.beans.Hours
 import com.example.catalogue.data.beans.Location
 import io.reactivex.Single
-import io.reactivex.SingleTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun <T> applySingleSchedulers(): SingleTransformer<T, T>? {
-    return SingleTransformer { observable: Single<T> ->
+fun <T> Single<T>.applySingleSchedulers(): Single<T> =
+    compose { observable: Single<T> ->
         observable
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
-}
 
 @BindingAdapter(value = ["businessItems", "businessViewModel"], requireAll = true)
 fun items(

@@ -32,6 +32,7 @@ class DetailsViewModel @Inject constructor(private val repository: BusinessRepos
 
     fun subscribe(business: BusinessRequiredData) {
         _businessRequiredLiveData.value = business
+
         disposable.add(repository.callDetails(business.id).subscribe(
             { response ->
                 if (response.isSuccessful && response.body() != null) {
@@ -43,6 +44,7 @@ class DetailsViewModel @Inject constructor(private val repository: BusinessRepos
             },
             { showErrorDialog() }
         ))
+
     }
 
     fun galleryItemClick(itemUrl: String) {

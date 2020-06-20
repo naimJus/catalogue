@@ -9,18 +9,41 @@ import javax.inject.Inject
 
 class BusinessRepository @Inject constructor(private val apiInterface: ApiInterface) {
 
+    private var businessResponse: BusinessResponse? = null
+    private var detailsResponse: DetailsResponse? = null
 
     fun callSearch(
+        forceRefresh: Boolean = false,
         latitude: Double = 37.786882,
         longitude: Double = -122.399972,
         term: String? = null
-    ): Single<Response<BusinessResponse>> =
-        apiInterface.businessSearch(latitude, longitude, term)
-            .compose(applySingleSchedulers())
-            .flatMap { Single.just(it) }
+    ): Single<Response<BusinessResponse>> {
+        return if (businessResponse == null || forceRefresh) {
+            apiInterface.businessSearch(latitude, longitude, term)
+                .applySingleSchedulers()
+                .flatMap {
+                    if (it.isSuccessful) {
+                        businessResponse = it.body()
+                    }
+                    Single.just(it)
+                }
+        } else {
+            Single.just(Response.success(businessResponse))
+        }
+    }
 
-    fun callDetails(id: String): Single<Response<DetailsResponse>> =
-        apiInterface.businessDetails(id)
-            .compose(applySingleSchedulers())
-            .flatMap { Single.just(it) }
+    fun callDetails(id: String, forceRefresh: Boolean = false): Single<Response<DetailsResponse>> {
+        return if (forceRefresh || detailsResponse?.id != id) {
+            apiInterface.businessDetails(id)
+                .applySingleSchedulers()
+                .flatMap {
+                    if (it.isSuccessful) {
+                        detailsResponse = it.body()
+                    }
+                    Single.just(it)
+                }
+        } else {
+            Single.just(Response.success(detailsResponse!!))
+        }
+    }
 }
