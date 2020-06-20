@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primaryColor">#b71c1c</color>
-    <color name="primaryLightColor">#f05545</color>
     <color name="primaryDarkColor">#7f0000</color>
-    <color name="secondaryColor">#ffd54f</color>
-    <color name="secondaryLightColor">#ffff81</color>
     <color name="secondaryDarkColor">#c8a415</color>
-    <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#000000</color>
 
     <color name="eighty_alpha_black">#CC000000</color>
     <color name="green">#19DF21</color>
