@@ -43,7 +43,6 @@ class DetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
         val view = FragmentDetailBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = this@DetailFragment.viewLifecycleOwner
             viewModel = this@DetailFragment.viewModel
-            toolbar.inflateMenu(R.menu.menu_details)
             toolbar.setOnMenuItemClickListener(this@DetailFragment)
             toolbar.setupWithNavController(
                 findNavController(),

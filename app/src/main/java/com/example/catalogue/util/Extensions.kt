@@ -76,18 +76,22 @@ fun rating(view: TextView, rating: Double) {
 @SuppressLint("SetTextI18n")
 @BindingAdapter(value = ["address"])
 fun address(view: TextView, location: Location?) {
-    if (location == null) {
-        view.visibility = View.INVISIBLE
-    } else {
-        val string = view.context.getString(
-            R.string.address,
-            location.displayAddress?.get(0),
+    val address: String? = when (location?.displayAddress?.size ?: 0) {
+        0 -> null
+        1 -> view.context.getString(
+            R.string.two_place_address,
+            location!!.displayAddress?.get(0),
+            location.crossStreets
+        )
+        else -> view.context.getString(
+            R.string.three_place_address,
+            location!!.displayAddress?.get(0),
             location.displayAddress?.get(1),
             location.crossStreets
         )
-        view.text = string
-        view.visibility = View.VISIBLE
     }
+    view.text = address
+    view.visibility = View.VISIBLE
 }
 
 @SuppressLint("SetTextI18n")
