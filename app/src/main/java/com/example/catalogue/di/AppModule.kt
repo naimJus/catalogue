@@ -2,6 +2,7 @@ package com.example.catalogue.di
 
 import android.app.Application
 import com.example.catalogue.data.ApiInterface
+import com.example.catalogue.data.BusinessRepository
 import com.example.catalogue.util.BASE_URL
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -52,4 +53,9 @@ class AppModule(private val application: Application) {
     @Singleton
     fun provideApiInterface(retrofit: Retrofit): ApiInterface =
         retrofit.create(ApiInterface::class.java)
+
+    @Provides
+    @Singleton
+    fun profileRepository(apiInterface: ApiInterface) = BusinessRepository(apiInterface)
+
 }
