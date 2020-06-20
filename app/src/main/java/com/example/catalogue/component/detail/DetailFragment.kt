@@ -50,7 +50,7 @@ class DetailFragment : DaggerFragment(), Toolbar.OnMenuItemClickListener {
             )
         }.root
 
-        postponeEnterTransition(200L, TimeUnit.MILLISECONDS)
+        postponeEnterTransition(50L, TimeUnit.MILLISECONDS)
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(R.transition.view_shared_enter)
         return view
