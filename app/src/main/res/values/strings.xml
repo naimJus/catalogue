@@ -4,7 +4,7 @@
     <string name="open">Open:</string>
     <string name="word_ok">OK</string>
     <string name="common_error_title">Error</string>
-    <string name="common_error_msg">Something when wrong please try again later or contact us.</string>
+    <string name="common_error_msg">Something went wrong internally, please try again later.</string>
     <string name="open_in_web">Open in web</string>
     <string name="call">Call</string>
     <string name="reviews">%d reviews</string>
