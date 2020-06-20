@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.catalogue.component.detail.DetailsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:menu="@menu/menu_details"
+                app:navigationIcon="@drawable/ic_back_arrow"
+                app:title="@{viewModel.businessDetailsLiveData.name}"
+                app:titleTextColor="@android:color/white" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:alpha="0.5"
+                    android:contentDescription="@string/empty"
+                    android:scaleType="fitXY"
+                    app:backgroundImageUrl="@{viewModel.businessRequiredLiveData.imageUrl}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivBusinessPoster"
+                    android:layout_width="@dimen/poster_image"
+                    android:layout_height="@dimen/poster_image"
+                    android:layout_margin="@dimen/spacing_larger"
+                    android:contentDescription="@string/empty"
+                    android:transitionName="@{viewModel.businessRequiredLiveData.id}"
+                    app:drawableUrl="@{viewModel.businessRequiredLiveData.imageUrl}"
+                    app:layout_constraintBottom_toTopOf="@+id/rvGallery"
+                    app:layout_constraintEnd_toEndOf="@id/ivBackground"
+                    app:layout_constraintStart_toStartOf="@id/ivBackground"
+                    app:layout_constraintTop_toTopOf="@id/ivBackground" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvGallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/business_thumb_size"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:orientation="horizontal"
+                    app:detailsViewModel="@{viewModel}"
+                    app:galleryItems="@{viewModel.businessDetailsLiveData.photos}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:listitem="@layout/gallery_item" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_normal"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rvGallery"
+                    app:layout_constraintVertical_bias="0">
+
+                    <TextView
+                        android:id="@+id/tvBusinessLocation"
+                        style="@style/DetailItem.HeadingOne"
+                        app:address="@{viewModel.businessDetailsLiveData.location}" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RatingBar
+                            style="@style/Widget.AppCompat.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:rating="@{viewModel.businessDetailsLiveData.rating}" />
+
+                        <TextView
+                            android:id="@+id/tvBusinessRating"
+                            style="@style/AdapterItemText.Title"
+                            android:layout_margin="0dp"
+                            android:layout_marginStart="@dimen/spacing_small"
+                            android:text="@{String.format(@string/reviews, viewModel.businessDetailsLiveData.reviewCount)}" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvBusinessPhone"
+                        style="@style/DetailItem.HeadingTwo"
+                        android:text="@{viewModel.businessDetailsLiveData.displayPhone}" />
+
+                    <TextView
+                        android:id="@+id/tvBusinessPrice"
+                        style="@style/DetailItem.HeadingTwo"
+                        app:setCategories="@{viewModel.businessDetailsLiveData.categories}"
+                        app:setPrice="@{viewModel.businessDetailsLiveData.price}" />
+
+                    <TextView
+                        android:id="@+id/tvHours"
+                        style="@style/DetailItem.Normal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_tiny"
+                        app:setDays="@{viewModel.businessDetailsLiveData.hours}" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

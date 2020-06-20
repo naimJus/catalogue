@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">Catalogue</string>
+    <string name="empty" />
+    <string name="open">Open:</string>
+    <string name="word_ok">OK</string>
+    <string name="common_error_title">Error</string>
+    <string name="common_error_msg">Something went wrong internally, please try again later.</string>
+    <string name="open_in_web">Open in web</string>
+    <string name="call">Call</string>
+    <string name="reviews">%d reviews</string>
+    <string name="three_place_address" translatable="false">%s%n%s%n%s</string>
+    <string name="two_place_address" translatable="false">%s%n%s</string>
+
+    <string name="day_0">Monday: %s - %s%n</string>
+    <string name="day_1">Tuesday :%s - %s%n</string>
+    <string name="day_2">Wednesday: %s - %s%n</string>
+    <string name="day_3">Thursday: %s - %s%n</string>
+    <string name="day_4">Friday: %s - %s%n</string>
+    <string name="day_5">Saturday: %s - %s%n</string>
+    <string name="day_6">Sunday: %s - %s%n</string>
+    <string name="search">Search</string>
+    <string name="no_data_message">No items available that match your query, please try another one.</string>
+    <string name="open_in_maps">Open in Maps</string>
+
+    <string-array name="days">
+        <item>@string/day_0</item>
+        <item>@string/day_1</item>
+        <item>@string/day_2</item>
+        <item>@string/day_3</item>
+        <item>@string/day_4</item>
+        <item>@string/day_5</item>
+        <item>@string/day_6</item>
+    </string-array>
 </resources>

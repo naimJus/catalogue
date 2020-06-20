@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.catalogue.component.list.ListViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".component.list.ListFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:menu="@menu/menu_list"
+                app:titleTextColor="@android:color/white" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvBusiness"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:businessItems="@{viewModel.businessListData}"
+            app:businessViewModel="@{viewModel}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

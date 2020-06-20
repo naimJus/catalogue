@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="business"
+            type="com.example.catalogue.data.beans.Business" />
+
+
+        <variable
+            name="viewModel"
+            type="com.example.catalogue.component.list.ListViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->viewModel.itemSelected(ivBusiness,business)}"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_normal">
+
+        <ImageView
+            android:id="@+id/ivBusiness"
+            android:layout_width="@dimen/business_thumb_size"
+            android:layout_height="@dimen/business_thumb_size"
+            android:layout_gravity="center"
+            android:contentDescription="@string/empty"
+            android:transitionName="@{business.id}"
+            app:drawableUrl="@{business.imageUrl}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvBusinessName"
+                style="@style/AdapterItemText.Title"
+                android:layout_marginTop="0dp"
+                android:text="@{business.name}" />
+
+            <TextView
+                android:id="@+id/tvBusinessPrice"
+                style="@style/AdapterItemText.Subtitle"
+                android:text="@{business.price}" />
+
+            <TextView
+                android:id="@+id/tvBusinessPhone"
+                style="@style/AdapterItemText.Subtitle"
+                android:text="@{business.displayPhone}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RatingBar
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    app:rating="@{business.rating}" />
+
+                <TextView
+                    android:id="@+id/tvBusinessRating"
+                    style="@style/AdapterItemText.Subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_margin="0dp"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:text="@{String.format(@string/reviews, business.reviewCount)}" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:baselineAligned="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    android:id="@+id/tvBusinessIsOpen"
+                    style="@style/AdapterItemText.Subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:text="@string/open"
+                    android:visibility="@{business != null ?View.VISIBLE:View.INVISIBLE}" />
+
+                <ImageView
+                    android:id="@+id/ivIsOpen"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:contentDescription="@string/empty"
+                    android:src="@{business.closed ? @drawable/ic_close : @drawable/ic_open}" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

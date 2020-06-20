@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_list_fragment">
+
+
+    <fragment
+        android:id="@+id/navigation_list_fragment"
+        android:name="com.example.catalogue.component.list.ListFragment"
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/to_detail_fragment"
+            app:destination="@id/navigation_detail_fragment" />
+        <action
+            android:id="@+id/to_info_dialog"
+            app:destination="@id/navigation_info_dialog" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_detail_fragment"
+        android:name="com.example.catalogue.component.detail.DetailFragment"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="arg_business"
+            app:argType="com.example.catalogue.data.beans.BusinessRequiredData" />
+        <action
+            android:id="@+id/to_info_dialog"
+            app:destination="@id/navigation_info_dialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/navigation_info_dialog"
+        android:name="com.example.catalogue.component.info.InfoDialogFragment">
+        <argument
+            android:name="arg_title"
+            android:defaultValue="-1"
+            app:argType="integer" />
+
+        <argument
+            android:name="arg_message"
+            android:defaultValue="-1"
+            app:argType="integer" />
+
+        <argument
+            android:name="arg_button_confirmation"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </dialog>
+</navigation>

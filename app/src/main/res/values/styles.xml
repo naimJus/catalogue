@@ -2,9 +2,56 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryDarkColor</item>
     </style>
 
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:editTextColor">@android:color/white</item>
+    </style>
+
+
+    <style name="AdapterItemText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_marginTop">@dimen/spacing_tiny</item>
+    </style>
+
+    <style name="AdapterItemText.Title" parent="AdapterItemText">
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AdapterItemText.Subtitle" parent="AdapterItemText">
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:textColor">@color/eighty_alpha_black</item>
+    </style>
+
+
+    <style name="DetailItem">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="DetailItem.HeadingOne" parent="DetailItem">
+        <item name="android:textSize">@dimen/text_larger</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DetailItem.HeadingTwo" parent="DetailItem">
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DetailItem.Normal" parent="DetailItem">
+        <item name="android:textSize">@dimen/text_large</item>
+    </style>
 </resources>
