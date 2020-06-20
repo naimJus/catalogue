@@ -23,7 +23,10 @@ class BusinessRepository @Inject constructor(private val apiInterface: ApiInterf
                 .applySingleSchedulers()
                 .flatMap {
                     if (it.isSuccessful) {
-                        businessResponse = it.body()
+                        // do not cache custom searched results
+                        if (term != null) {
+                            businessResponse = it.body()
+                        }
                     }
                     Single.just(it)
                 }
