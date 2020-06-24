@@ -29,7 +29,7 @@ class ListViewModel @Inject constructor(private val repository: BusinessReposito
         get() = _searchExpandedLiveData
 
     fun subscribe() {
-        performSearch(true, "")
+        performSearch(false, "")
     }
 
     fun itemSelected(view: ImageView, business: Business) {
