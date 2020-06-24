@@ -16,7 +16,7 @@ import com.example.catalogue.component.list.ListFragmentDirections.toDetailFragm
 import com.example.catalogue.component.list.ListFragmentDirections.toInfoDialog
 import com.example.catalogue.data.EventObserver
 import com.example.catalogue.databinding.FragmentListBinding
-import com.example.catalogue.util.ViewModelFactory
+import com.example.catalogue.di.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_list.*
 import java.util.concurrent.TimeUnit

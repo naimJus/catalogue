@@ -17,7 +17,7 @@ import androidx.transition.TransitionInflater
 import com.example.catalogue.R
 import com.example.catalogue.data.EventObserver
 import com.example.catalogue.databinding.FragmentDetailBinding
-import com.example.catalogue.util.ViewModelFactory
+import com.example.catalogue.di.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject

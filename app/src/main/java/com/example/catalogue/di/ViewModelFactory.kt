@@ -1,4 +1,4 @@
-package com.example.catalogue.util
+package com.example.catalogue.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
