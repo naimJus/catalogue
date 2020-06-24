@@ -8,6 +8,10 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
+    def keyPropertiesFile = rootProject.file("apikey.properties")
+    def keyProperties = new Properties()
+    keyProperties.load(new FileInputStream(keyPropertiesFile))
+
     defaultConfig {
         applicationId "com.example.catalogue"
         minSdkVersion 21
@@ -16,6 +20,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "API_KEY", keyProperties["API_KEY"])
     }
 
     buildTypes {
